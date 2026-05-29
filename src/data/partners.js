@@ -1,0 +1,49 @@
+import kyunginLogo from '../assets/partners/경인로그.JPG'
+import ndtLogo from '../assets/partners/엔디티.JPG'
+import kipcoLogo from '../assets/partners/키프코.JPG'
+import hanwhaLogo from '../assets/partners/한화.JPG'
+
+export const partnersContent = {
+  eyebrow: 'Partners',
+  title: '협력업체',
+  description:
+    '신뢰할 수 있는 파트너사와 함께 품질과 납기를 보장하는 공급망을 구축하고 있습니다.',
+
+  items: [
+    {
+      id: 'kyungin-tech',
+      name: '경인테크',
+      description: '외주 협력업체 등록',
+      image: kyunginLogo,
+      website: 'http://kintec.kr/default/',
+    },
+    {
+      id: 'ndt-eng',
+      name: 'NDT ENG',
+      description: '외주 협력업체 등록',
+      image: ndtLogo,
+      website: 'http://www.ndteng.co.kr/',
+    },
+    {
+      id: 'kipco',
+      name: '키프코전자항공',
+      description: '외주 협력업체 등록',
+      image: kipcoLogo,
+      website: 'http://www.kipcokorea.com/kipco',
+    },
+    {
+      id: 'hanwha-aerospace',
+      name: '한화에어로스페이스',
+      description: '외주 협력업체 등록',
+      image: hanwhaLogo,
+      website: 'https://www.hanwhaaerospace.com/kor/index.do',
+    },
+    {
+      id: 'sunggok-nanotech',
+      name: '성곡나노텍',
+      description: '외주 협력업체 등록 (로고 이미지 준비 중)',
+      image: null,
+      website: null,
+    },
+  ],
+}
