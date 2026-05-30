@@ -45,7 +45,7 @@ export default function Hero() {
           <h1 className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
             {title}
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg md:text-xl">
+          <p className="mx-auto mt-6 max-w-4xl text-base leading-relaxed text-slate-300 sm:text-lg md:text-xl">
             {subtitle}
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
