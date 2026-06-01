@@ -11,7 +11,7 @@ export const aboutContent = {
     name: '홍세진',
     position: '대표이사',
     paragraphs: [
-      '안녕하십니까. (주)크레타(CREATOR TECH) 대표 홍세진입니다.',
+      '안녕하십니까. 크레타테크(CREATOR TECH) 대표 홍세진입니다.',
       '저희 CREATOR TECH는 방전가공(EDM)과 와이어 가공 기술을 중심으로, 일반 절삭이 어려운 고경도 소재와 복잡 형상을 정밀하게 가공해 왔습니다. 품질과 납기를 최우선으로 하는 운영 체계로 고객의 신뢰에 보답하고 있습니다.',
       '앞으로도 끊임없는 기술 개발과 설비 투자를 통해 더 나은 파트너가 되겠습니다. 감사합니다.',
     ],
@@ -20,7 +20,7 @@ export const aboutContent = {
   overview: {
     title: '회사 개요',
     items: [
-      { label: '회사명', value: '(주)크레타' },
+      { label: '회사명', value: '크레타테크' },
       { label: '브랜드명', value: 'CREATOR TECH' },
       { label: '대표자', value: '홍세진' },
       { label: '설립일', value: '2005년 3월' },

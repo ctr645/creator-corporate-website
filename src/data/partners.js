@@ -26,7 +26,7 @@ export const partnersContent = {
     },
     {
       id: 'kipco',
-      name: '키프코전자항공',
+      name: '(주)키프코우주항공',
       description: '외주 협력업체 등록',
       image: kipcoLogo,
       website: 'http://www.kipcokorea.com/kipco',
@@ -40,7 +40,7 @@ export const partnersContent = {
     },
     {
       id: 'sunggok-nanotech',
-      name: '성곡나노텍',
+      name: '(주)페리만&티젠',
       description: '외주 협력업체 등록 (로고 이미지 준비 중)',
       image: null,
       website: null,

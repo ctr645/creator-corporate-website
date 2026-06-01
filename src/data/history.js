@@ -2,7 +2,7 @@ export const historyContent = {
   eyebrow: 'History',
   title: '회사 연혁',
   description:
-    '크레타는 주요 제조업 파트너사와의 협력을 바탕으로 정밀가공 역량을 지속적으로 확장해 왔습니다.',
+    '크레타테크는 주요 제조업 파트너사와의 협력을 바탕으로 정밀가공 역량을 지속적으로 확장해 왔습니다.',
 
   items: [
     {
@@ -19,8 +19,8 @@ export const historyContent = {
       year: 2002,
       month: 6,
       dateLabel: '2002년 6월',
-      title: '키프코전자항공 외주업체 등록',
-      partner: '키프코전자항공',
+      title: '(주)키프코우주항공 외주업체 등록',
+      partner: '(주)키프코우주항공',
       website: 'http://www.kipcokorea.com/kipco',
     },
     {
@@ -28,8 +28,8 @@ export const historyContent = {
       year: 2005,
       month: 9,
       dateLabel: '2005년 9월',
-      title: '성곡나노텍 외주업체 등록',
-      partner: '성곡나노텍',
+      title: '(주)페리만&티젠 외주업체 등록',
+      partner: '(주)페리만&티젠',
       website: '',
     },
     {

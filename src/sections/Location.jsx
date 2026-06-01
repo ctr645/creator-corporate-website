@@ -64,7 +64,7 @@ export default function Location() {
             <div className="overflow-hidden rounded-sm border border-slate-200">
               {mapEmbedUrl ? (
                 <iframe
-                  title="크레타(CREATOR TECH) 위치 지도"
+                  title="크레타테크(CREATOR TECH) 위치 지도"
                   src={mapEmbedUrl}
                   className="aspect-[4/3] w-full border-0 sm:aspect-video"
                   loading="lazy"

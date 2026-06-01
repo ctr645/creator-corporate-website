@@ -40,11 +40,11 @@ function ContactChannel({ channel }) {
           <p className="text-sm font-medium text-slate-500">{channel.label}</p>
           {href ? (
             <a
-              href={href}
-              className="mt-1 block text-xl font-bold text-slate-900 transition-colors hover:text-sky-600 sm:text-2xl"
-            >
-              {value}
-            </a>
+            href={href}
+            className="mt-1 block break-all text-lg font-bold text-slate-900 transition-colors hover:text-sky-600 sm:text-xl"
+          >
+            {value}
+          </a>
           ) : (
             <p className="mt-1 text-xl font-bold text-slate-900 sm:text-2xl">
               {value}
