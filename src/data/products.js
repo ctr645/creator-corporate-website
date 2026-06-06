@@ -7,8 +7,8 @@ import shapeImage from '../assets/products/shape/이형상.JPG'
 export const productsContent = {
   eyebrow: 'Products',
   title: '제품소개',
-  description:
-    '와이어·EDM 및 정밀 CNC 가공 부품을 다양한 산업 분야에 설계·가공·납품합니다.',
+  // description:
+    // '와이어·EDM 및 정밀 CNC 가공 부품을 다양한 산업 분야에 설계·가공·납품합니다.',
 
     items: [
       {

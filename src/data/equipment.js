@@ -6,7 +6,7 @@ import wireImage350 from '../assets/equipment/wire/350(3대).JPG'
 import wireImage500 from '../assets/equipment/wire/500(2대).JPG'
 import wireImage650 from '../assets/equipment/wire/650(2대).JPG'
 import wireImageZ750 from '../assets/equipment/wire/650(Z750 1대).jpg'
-import wireSpecImage from '../assets/equipment/wire/와이어기 사양.jpg'
+// import wireSpecImage from '../assets/equipment/wire/와이어기 사양.jpg'
 import measurementImage from '../assets/equipment/measurement/측정기.JPG'
 
 export const equipmentContent = {
@@ -41,7 +41,7 @@ export const equipmentContent = {
         '고경도 소재 및 복잡 형상 가공에 특화된 방전기 라인업을 운영하고 있습니다.',
       specs: [
         { label: '보유 설비', value: 'Sodick + 범용 ZNC 시리즈' },
-        { label: '운영 대수', value: '총 4대' },
+        { label: '운영 대수', value: '총 5대' },
         { label: '주요 대응', value: '고경도 소재, 복잡 형상, 정밀 방전가공' },
       ],
       images: [
@@ -91,7 +91,7 @@ export const equipmentContent = {
         { src: wireImage500, alt: '와이어 500 장비', caption: '500급 장비 (2대)' },
         { src: wireImage650, alt: '와이어 650 장비', caption: '650급 장비 (2대)' },
         { src: wireImageZ750, alt: '와이어 Z750 장비', caption: '650 (Z750) 장비 (1대)' },
-        { src: wireSpecImage, alt: '와이어 장비 사양 이미지', caption: '와이어 장비 사양' },
+        // { src: wireSpecImage, alt: '와이어 장비 사양 이미지', caption: '와이어 장비 사양' },
       ],
     },
     {

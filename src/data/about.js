@@ -4,7 +4,7 @@ export const aboutContent = {
   eyebrow: 'About Us',
   title: '회사소개',
   description:
-    'CREATOR TECH는 방전가공(EDM), 와이어 가공, 정밀 CNC 가공 기술을 바탕으로 고난도 산업 부품을 안정적으로 생산합니다.',
+    'CREATOR TECH는 방전가공(EDM), 와이어 가공기술을 바탕으로 고난도 산업 부품을 안정적으로 생산합니다.',
 
   greeting: {
     title: '대표 인사말',
@@ -23,16 +23,16 @@ export const aboutContent = {
       { label: '회사명', value: '크레타테크' },
       { label: '브랜드명', value: 'CREATOR TECH' },
       { label: '대표자', value: '홍세진' },
-      { label: '설립일', value: '2005년 3월' },
-      { label: '사업분야', value: '방전가공(EDM), 와이어 가공, 정밀 CNC 가공' },
+      { label: '설립일', value: '1999년 11월 10일' },
+      { label: '사업분야', value: '방전가공(EDM), 와이어 가공' },
       { label: '주요 거래처', value: '자동차 · 반도체 · 기계 부품' },
-      { label: '소재지', value: '경상남도 창원시 의창구 팔용로 448' },
+      { label: '소재지', value: '경남 창원시 마산회원구 봉암공단12길 19' },
     ],
   },
 
   facilityImage: {
     src: companyImage,
-    alt: '크레타 회사 전경',
-    caption: '크레타 본사 및 정밀 가공 설비 전경',
+    alt: '크레타테크 회사 전경',
+    caption: '크레타회사 본사',
   },
 }

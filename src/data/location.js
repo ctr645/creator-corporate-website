@@ -5,8 +5,8 @@ export const locationContent = {
 
   address: {
     label: '주소',
-    value: '경상남도 창원시 의창구 팔용로 448',
-    mapUrl: 'https://naver.me/F5ssKaFc',
+    value: '경남 창원시 마산회원구 봉암공단12길 19',
+    mapUrl: 'https://naver.me/GZZEiuMv',
   },
 
   directions: [
@@ -24,6 +24,6 @@ export const locationContent = {
    * Google Maps / Naver Maps 등 embed URL을 입력하세요.
    * 비어 있으면 지도 placeholder가 표시됩니다.
    */
-  mapEmbedUrl: 
-  'https://www.google.com/maps?q=경상남도+창원시+의창구+팔용로+448&output=embed',
+  mapEmbedUrl:
+'https://www.google.com/maps?q=경남+창원시+마산회원구+봉암공단12길+19&output=embed',
 }
