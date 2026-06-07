@@ -1,6 +1,6 @@
 import edmImage from '../assets/products/edm/방전.JPG'
 import wireImage from '../assets/products/wire/와이어.JPG'
-import wireCollageImage from '../assets/products/wire/와이어사진.JPG'
+// import wireCollageImage from '../assets/products/wire/와이어사진.JPG'
 import shapeImage from '../assets/products/shape/이형상.JPG'
 
 
@@ -31,15 +31,7 @@ export const productsContent = {
         applications: ['정밀 부품', '미세 가공', '고경도 재료'],
       },
     
-      {
-        id: 'wire-collage',
-        name: '와이어 가공 사례',
-        category: 'Wire Processing',
-        description:
-          '다양한 와이어 가공 사례 및 정밀 가공 결과물을 확인할 수 있습니다.',
-        image: wireCollageImage,
-        applications: ['다품종 가공', '정밀 절삭', '산업 부품'],
-      },
+    
     
       {
         id: 'shape',

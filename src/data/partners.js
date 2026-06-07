@@ -2,6 +2,7 @@ import kyunginLogo from '../assets/partners/경인로그.JPG'
 import ndtLogo from '../assets/partners/엔디티.JPG'
 import kipcoLogo from '../assets/partners/키프코.JPG'
 import hanwhaLogo from '../assets/partners/한화.JPG'
+import tgenLogo from '../assets/partners/티젠.JPG'
 
 export const partnersContent = {
   eyebrow: 'Partners',
@@ -41,8 +42,8 @@ export const partnersContent = {
     {
       id: 'sunggok-nanotech',
       name: '(주)페리만&티젠',
-      description: '외주 협력업체 등록 (로고 이미지 준비 중)',
-      image: null,
+      description: '외주 협력업체 등록 ',
+      image: tgenLogo,
       website: null,
     },
   ],
