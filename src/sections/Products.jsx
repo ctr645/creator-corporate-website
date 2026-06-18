@@ -1,17 +1,39 @@
-import SectionHeading from '../components/SectionHeading'
-import FadeIn from '../components/FadeIn'
-import { productsContent } from '../data/products'
+import SectionHeading from "../components/SectionHeading";
+import FadeIn from "../components/FadeIn";
+import { productsContent } from "../data/products";
 
 function ProductCard({ item }) {
   return (
-    <article className="group overflow-hidden rounded-sm border border-slate-200 bg-white transition-shadow duration-300 hover:shadow-md">
-      <div className="grid md:grid-cols-2">
-        <div className="aspect-[4/3] overflow-hidden bg-slate-100 md:aspect-auto md:min-h-[240px]">
-          <img
-            src={item.image}
-            alt={item.name}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-          />
+    <article
+      id={`product-${item.id}`}
+      className="group scroll-mt-24 overflow-hidden rounded-sm border border-slate-200 bg-white transition-shadow duration-300 hover:shadow-md"
+    >
+      <div className="grid md:grid-cols-[1fr_1fr]">
+        <div className="overflow-hidden bg-slate-100 md:min-h-[240px]">
+          {item.images ? (
+            <div className="grid h-[300px] grid-cols-3 bg-slate-100">
+              {item.images.map((image, index) => (
+                <div
+                  key={index}
+                  className="flex items-center justify-center border-r border-slate-200 last:border-r-0"
+                >
+                  <img
+                    src={image}
+                    alt={`${item.name}-${index + 1}`}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="aspect-[4/3] md:h-full">
+              <img
+                src={item.image}
+                alt={item.name}
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+            </div>
+          )}
         </div>
         <div className="flex flex-col justify-center p-6 sm:p-8">
           <p className="text-xs font-semibold uppercase tracking-[0.15em] text-sky-600">
@@ -36,11 +58,11 @@ function ProductCard({ item }) {
         </div>
       </div>
     </article>
-  )
+  );
 }
 
 export default function Products() {
-  const { eyebrow, title, description, items } = productsContent
+  const { eyebrow, title, description, items } = productsContent;
 
   return (
     <section id="products" className="scroll-mt-20 bg-white py-24 sm:py-32">
@@ -62,5 +84,5 @@ export default function Products() {
         </div>
       </div>
     </section>
-  )
+  );
 }

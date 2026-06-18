@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { HiMenu, HiX } from 'react-icons/hi'
-import { company, navLinks } from '../data/site'
+import { useState } from "react";
+import { HiMenu, HiX, HiChevronDown } from "react-icons/hi";
+import { company, navLinks } from "../data/site";
 
 function NavLink({ link, onClick }) {
   return (
@@ -11,22 +11,20 @@ function NavLink({ link, onClick }) {
     >
       {link.label}
     </a>
-  )
+  );
 }
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [equipmentOpen, setEquipmentOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
 
-  const closeMenu = () => setMenuOpen(false)
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-sm">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-[72px] sm:px-6 lg:px-8">
-        <a
-          href="#"
-          className="flex flex-col leading-tight"
-          onClick={closeMenu}
-        >
+        <a href="#" className="flex flex-col leading-tight" onClick={closeMenu}>
           <span className="text-base font-bold uppercase tracking-[0.1em] text-slate-900 sm:text-lg">
             {company.name}
           </span>
@@ -36,13 +34,92 @@ export default function Header() {
         </a>
 
         {/* Desktop navigation */}
-        <nav
-          className="hidden items-center gap-8 lg:flex"
-          aria-label="주 메뉴"
-        >
-          {navLinks.map((link) => (
-            <NavLink key={link.id} link={link} />
-          ))}
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="주 메뉴">
+          {navLinks.map((link) =>
+            link.id === "equipment" ? (
+              <div
+                key={link.id}
+                className="relative"
+                onMouseEnter={() => setEquipmentOpen(true)}
+                onMouseLeave={() => setEquipmentOpen(false)}
+              >
+                <button className="flex items-center gap-1 text-sm font-medium text-slate-700 hover:text-sky-600">
+                  설비
+                  <HiChevronDown size={16} />
+                </button>
+
+                {equipmentOpen && (
+                  <div className="absolute left-0 top-full w-52 overflow-hidden rounded-sm border border-slate-200 bg-white shadow-lg">
+                    <a
+                      href="#equipment-edm"
+                      className="block px-4 py-3 text-sm text-slate-700 transition-colors hover:bg-slate-50 hover:text-sky-600"
+                    >
+                      방전기
+                    </a>
+
+                    <a
+                      href="#equipment-superdrill"
+                      className="block px-4 py-3 text-sm text-slate-700 transition-colors hover:bg-slate-50 hover:text-sky-600"
+                    >
+                      슈퍼드릴
+                    </a>
+
+                    <a
+                      href="#equipment-wire"
+                      className="block px-4 py-3 text-sm text-slate-700 transition-colors hover:bg-slate-50 hover:text-sky-600"
+                    >
+                      와이어
+                    </a>
+
+                    <a
+                      href="#equipment-measurement"
+                      className="block px-4 py-3 text-sm text-slate-700 transition-colors hover:bg-slate-50 hover:text-sky-600"
+                    >
+                      측정기
+                    </a>
+                  </div>
+                )}
+              </div>
+            ) : link.id === "products" ? (
+              <div
+                key={link.id}
+                className="relative"
+                onMouseEnter={() => setProductsOpen(true)}
+                onMouseLeave={() => setProductsOpen(false)}
+              >
+                <button className="flex items-center gap-1 text-sm font-medium text-slate-700 hover:text-sky-600">
+                  제품소개
+                  <HiChevronDown size={16} />
+                </button>
+            
+                {productsOpen && (
+                  <div className="absolute left-0 top-full w-52 overflow-hidden rounded-sm border border-slate-200 bg-white shadow-lg">
+                    <a
+                      href="#product-edm"
+                      className="block px-4 py-3 text-sm text-slate-700 transition-colors hover:bg-slate-50 hover:text-sky-600"
+                    >
+                      방전가공
+                    </a>
+            
+                    <a
+                      href="#product-wire"
+                      className="block px-4 py-3 text-sm text-slate-700 transition-colors hover:bg-slate-50 hover:text-sky-600"
+                    >
+                      와이어 가공
+                    </a>
+            
+                    <a
+                      href="#product-shape"
+                      className="block px-4 py-3 text-sm text-slate-700 transition-colors hover:bg-slate-50 hover:text-sky-600"
+                    >
+                      이형상 가공
+                    </a>
+                  </div>
+                )}
+              </div>) : (
+              <NavLink key={link.id} link={link} />
+            ),
+          )}
         </nav>
 
         <a
@@ -58,7 +135,7 @@ export default function Header() {
           className="inline-flex items-center justify-center rounded-sm p-2 text-slate-700 hover:bg-slate-100 lg:hidden"
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
-          aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'}
+          aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
           onClick={() => setMenuOpen((prev) => !prev)}
         >
           {menuOpen ? <HiX size={26} /> : <HiMenu size={26} />}
@@ -69,7 +146,7 @@ export default function Header() {
       <nav
         id="mobile-nav"
         className={`border-t border-slate-200 bg-white lg:hidden ${
-          menuOpen ? 'block' : 'hidden'
+          menuOpen ? "block" : "hidden"
         }`}
         aria-label="모바일 메뉴"
       >
@@ -97,5 +174,5 @@ export default function Header() {
         </ul>
       </nav>
     </header>
-  )
+  );
 }
