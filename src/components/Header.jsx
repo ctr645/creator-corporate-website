@@ -19,6 +19,9 @@ export default function Header() {
   const [equipmentOpen, setEquipmentOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
 
+  const [mobileEquipmentOpen, setMobileEquipmentOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+
   const closeMenu = () => setMenuOpen(false);
 
   return (
@@ -91,7 +94,7 @@ export default function Header() {
                   제품소개
                   <HiChevronDown size={16} />
                 </button>
-            
+
                 {productsOpen && (
                   <div className="absolute left-0 top-full w-52 overflow-hidden rounded-sm border border-slate-200 bg-white shadow-lg">
                     <a
@@ -100,14 +103,14 @@ export default function Header() {
                     >
                       방전가공
                     </a>
-            
+
                     <a
                       href="#product-wire"
                       className="block px-4 py-3 text-sm text-slate-700 transition-colors hover:bg-slate-50 hover:text-sky-600"
                     >
                       와이어 가공
                     </a>
-            
+
                     <a
                       href="#product-shape"
                       className="block px-4 py-3 text-sm text-slate-700 transition-colors hover:bg-slate-50 hover:text-sky-600"
@@ -116,7 +119,8 @@ export default function Header() {
                     </a>
                   </div>
                 )}
-              </div>) : (
+              </div>
+            ) : (
               <NavLink key={link.id} link={link} />
             ),
           )}
@@ -151,17 +155,117 @@ export default function Header() {
         aria-label="모바일 메뉴"
       >
         <ul className="flex flex-col px-4 py-4">
-          {navLinks.map((link) => (
-            <li key={link.id}>
-              <a
-                href={`#${link.id}`}
-                className="block border-b border-slate-100 py-3.5 text-base font-medium text-slate-800"
-                onClick={closeMenu}
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          <li>
+            <a
+              href="#about"
+              className="block border-b border-slate-100 py-3.5 text-base font-medium text-slate-800"
+              onClick={closeMenu}
+            >
+              회사소개
+            </a>
+          </li>
+
+          <li className="border-b border-slate-100">
+            <button
+              type="button"
+              onClick={() => setMobileEquipmentOpen(!mobileEquipmentOpen)}
+              className="flex w-full items-center justify-between py-3.5 text-base font-medium text-slate-800"
+            >
+              설비
+              <HiChevronDown
+                className={`transition-transform ${
+                  mobileEquipmentOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {mobileEquipmentOpen && (
+              <div className="pb-3 pl-4 flex flex-col gap-2 text-sm text-slate-600">
+                <a href="#equipment-edm" onClick={closeMenu}>
+                  방전기
+                </a>
+                <a href="#equipment-superdrill" onClick={closeMenu}>
+                  슈퍼드릴
+                </a>
+                <a href="#equipment-wire" onClick={closeMenu}>
+                  와이어
+                </a>
+                <a href="#equipment-measurement" onClick={closeMenu}>
+                  측정기
+                </a>
+              </div>
+            )}
+          </li>
+
+          <li className="border-b border-slate-100">
+            <button
+              type="button"
+              onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
+              className="flex w-full items-center justify-between py-3.5 text-base font-medium text-slate-800"
+            >
+              제품소개
+              <HiChevronDown
+                className={`transition-transform ${
+                  mobileProductsOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {mobileProductsOpen && (
+              <div className="pb-3 pl-4 flex flex-col gap-2 text-sm text-slate-600">
+                <a href="#product-edm" onClick={closeMenu}>
+                  방전가공
+                </a>
+                <a href="#product-wire" onClick={closeMenu}>
+                  와이어 가공
+                </a>
+                <a href="#product-shape" onClick={closeMenu}>
+                  이형상 가공
+                </a>
+              </div>
+            )}
+          </li>
+
+          <li>
+            <a
+              href="#history"
+              className="block border-b border-slate-100 py-3.5 text-base font-medium text-slate-800"
+              onClick={closeMenu}
+            >
+              회사 연혁
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#partners"
+              className="block border-b border-slate-100 py-3.5 text-base font-medium text-slate-800"
+              onClick={closeMenu}
+            >
+              협력업체
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#contact"
+              className="block border-b border-slate-100 py-3.5 text-base font-medium text-slate-800"
+              onClick={closeMenu}
+            >
+              문의사항
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#location"
+              className="block border-b border-slate-100 py-3.5 text-base font-medium text-slate-800"
+              onClick={closeMenu}
+            >
+              찾아오는길
+            </a>
+          </li>
+
           <li className="pt-4">
             <a
               href="#contact"
