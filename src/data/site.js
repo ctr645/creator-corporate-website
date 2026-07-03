@@ -8,7 +8,7 @@ export const company = {
   phone: '010-9302-6450',
   fax: '055-265-6450',
   email: 'hongsj6456@naver.com',
-  address: '경상남도 창원시 의창구 팔용로 448',
+  address: '경남 창원시 마산회원구 봉암공단12길 19',
   businessHours: '평일 09:00 – 18:00',
 }
 
