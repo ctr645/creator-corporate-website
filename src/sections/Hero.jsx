@@ -1,5 +1,4 @@
-import { heroContent, heroImages } from '../data/hero'
-
+import { heroContent, heroImages } from "../data/hero";
 
 function HeroImagePanel({ image }) {
   return (
@@ -17,17 +16,17 @@ function HeroImagePanel({ image }) {
       {/* 이미지 미등록 시 대체 패턴 */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-slate-900 to-slate-950 opacity-10 [background-image:linear-gradient(135deg,rgba(56,189,248,0.08)_0%,transparent_50%)]" />
     </div>
-  )
+  );
 }
 
 export default function Hero() {
-  const { eyebrow, title, subtitle, ctaPrimary, ctaSecondary } = heroContent
+  const { eyebrow, title, subtitle, ctaPrimary, ctaSecondary } = heroContent;
 
   return (
     <section
       id="hero"
       className="relative flex min-h-screen flex-col bg-brand-dark pt-16 sm:pt-[72px]"
-      >
+    >
       {/* 이미지 영역 — 2분할 */}
       {/* <div className="flex flex-1 flex-col lg:flex-row"> */}
       <div className="flex min-h-screen flex-col lg:flex-row">
@@ -45,7 +44,7 @@ export default function Hero() {
           <h1 className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
             {title}
           </h1>
-          <p className="mx-auto mt-6 max-w-4xl text-base leading-relaxed text-slate-300 sm:text-lg md:text-xl">
+          <p className="mx-auto mt-6 max-w-none text-base leading-relaxed text-slate-300 sm:text-lg md:text-xl lg:whitespace-nowrap">
             {subtitle}
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -77,5 +76,5 @@ export default function Hero() {
         </a>
       </div>
     </section>
-  )
+  );
 }
