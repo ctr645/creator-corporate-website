@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://creta.한국/sitemap.xml

@@ -66,7 +66,7 @@
 | 1 | 네이버 계정으로 [네이버 서치어드바이저](https://searchadvisor.naver.com/) 로그인 |
 | 2 | 사이트 등록 (`https://creta.한국` 또는 운영 도메인) |
 | 3 | 사이트 소유확인(HTML 파일 또는 메타태그 방식 중 1개) |
-| 4 | `sitemap.xml` 등 제출 가능한 항목 등록 |
+| 4 | `https://creta.한국/sitemap.xml` 제출 (`public/sitemap.xml`이 배포 시 자동 제공됨) |
 | 5 | 웹페이지 수집 요청 실행 |
 | 6 | 색인/오류 리포트 주기 점검 |
 
@@ -217,7 +217,9 @@ text 파일 수정 → npm run dev 로 확인 → git push → Vercel 자동 배
 | 협력업체 목록, 로고, 링크 | **`src/data/partners.js`**, `src/assets/partners/` |
 | 문의 안내 문구 | **`src/data/contact.js`** |
 | 주소, 네이버 지도 링크, 지도 embed | **`src/data/location.js`** |
-| SEO title/description, favicon | **`index.html`**, `public/favicon.svg` |
+| SEO 메타태그, favicon | **`index.html`**, `public/favicon.svg` |
+| 검색엔진 크롤링 안내 | **`public/robots.txt`** |
+| 사이트맵(검색엔진 제출용) | **`public/sitemap.xml`** |
 | 전체 색상, 전역 폰트, 기본 CSS | **`src/index.css`** |
 | 섹션 표시 순서 | **`src/pages/Home.jsx`** |
 
@@ -310,6 +312,8 @@ npm run build
 ├── eslint.config.js
 ├── public/
 │   ├── favicon.svg
+│   ├── robots.txt
+│   ├── sitemap.xml
 │   ├── icons.svg
 │   └── images/
 ├── src/
@@ -522,19 +526,69 @@ npm run build
 
 ---
 
-## 9. SEO, favicon, Open Graph
+## 9. SEO, robots.txt, sitemap, Open Graph
 
-### SEO 기본 메타
+검색엔진 최적화(SEO) 관련 파일은 아래 3곳에서 관리합니다.
 
-현재 SEO 기본 설정은 `index.html`에 있습니다.
+| 파일 | 역할 | 배포 후 접근 주소 |
+|---|---|---|
+| `index.html` | 페이지 메타태그, 네이버 인증, OG/Twitter Card | `https://creta.한국/` |
+| `public/robots.txt` | 검색엔진 크롤링 허용 및 사이트맵 안내 | `https://creta.한국/robots.txt` |
+| `public/sitemap.xml` | 검색엔진에 제출할 URL 목록 | `https://creta.한국/sitemap.xml` |
 
-| 항목 | 위치 |
+Vite는 `public/` 폴더 파일을 빌드 시 `dist/` 루트로 그대로 복사합니다.  
+별도 `vercel.json` 설정 없이도 배포 후 위 두 주소로 정상 접근됩니다.
+
+### `index.html` SEO 메타태그 (현재 설정)
+
+| 항목 | 내용 |
 |---|---|
 | 문서 언어 | `<html lang="ko">` |
 | favicon | `<link rel="icon" href="/favicon.svg">` |
 | viewport | `<meta name="viewport">` |
-| description | `<meta name="description">` |
-| 브라우저 title | `<title>` |
+| 네이버 사이트 인증 | `<meta name="naver-site-verification">` (삭제 금지) |
+| description | 크레타테크 정밀가공 기업 소개 문구 |
+| author | 크레타테크 (CREATOR TECH) |
+| keywords | Wire EDM, 정밀가공, CNC 가공 등 |
+| robots | `index, follow` |
+| theme-color | `#0a0f14` (브랜드 다크 컬러) |
+| canonical | `https://creta.한국/` |
+| title | `크레타테크 \| CREATOR TECH - Precision Wire & EDM Solutions` |
+
+### Open Graph / Twitter Card (현재 설정)
+
+| 항목 | 설정 여부 |
+|---|---|
+| `og:type`, `og:locale`, `og:site_name` | 설정 완료 |
+| `og:title`, `og:description`, `og:url` | 설정 완료 |
+| `twitter:card`, `twitter:title`, `twitter:description` | 설정 완료 |
+| `og:image` | 미설정 (추후 `public/og-image.jpg` 추가 가능) |
+
+SNS 공유 미리보기 이미지를 개선하려면 `public/og-image.jpg` 등을 추가한 뒤 `index.html`에 `og:image`, `twitter:image`를 연결하세요.
+
+### `public/robots.txt`
+
+현재 내용:
+
+```text
+User-agent: *
+Allow: /
+
+Sitemap: https://creta.한국/sitemap.xml
+```
+
+### `public/sitemap.xml`
+
+현재는 단일 페이지 구조이므로 메인 URL 1개만 등록되어 있습니다.
+
+| 항목 | 값 |
+|---|---|
+| URL | `https://creta.한국/` |
+| changefreq | `monthly` |
+| priority | `1.0` |
+| lastmod | 사이트 내용 대폭 수정 시 날짜 갱신 권장 |
+
+페이지가 추가되면 `public/sitemap.xml`에 `<url>` 항목을 추가하고, 네이버 서치어드바이저에 재제출하세요.
 
 ### favicon 변경
 
@@ -543,19 +597,14 @@ npm run build
 | favicon 파일 교체 | `public/favicon.svg` |
 | 파일명 변경 시 경로 수정 | `index.html`의 favicon link |
 
-### Open Graph 이미지
+### SEO 수정 시 주의사항
 
-현재 `index.html`에는 Open Graph 메타 태그가 별도로 설정되어 있지 않습니다.
-
-SNS 공유 이미지를 명확히 지정하려면 다음 항목을 추가하는 방식으로 운영할 수 있습니다.
-
-| 항목 | 권장 위치 |
+| 항목 | 주의 내용 |
 |---|---|
-| 공유 이미지 파일 | `public/og-image.jpg` 등 |
-| `og:title` | `index.html` |
-| `og:description` | `index.html` |
-| `og:image` | `index.html` |
-| `og:type` | `index.html` |
+| 네이버 인증 메타태그 | 배포 후 삭제하면 서치어드바이저 소유 확인이 해제될 수 있음 |
+| canonical / og:url | 도메인 변경 시 `index.html`과 `sitemap.xml`을 함께 수정 |
+| sitemap lastmod | 콘텐츠 대폭 수정 후 날짜 갱신 권장 |
+| robots.txt | 전체 차단(`Disallow: /`) 설정 금지 |
 
 ---
 
@@ -765,7 +814,9 @@ SNS 공유 이미지를 명확히 지정하려면 다음 항목을 추가하는 
 | 6 | **`src/data/partners.js`** | 협력업체, 로고, 링크 | 낮음 |
 | 7 | **`src/data/history.js`** | 회사 연혁 | 낮음 |
 | 8 | **`src/data/hero.js`** | 메인 문구, 히어로 이미지 | 낮음 |
-| 9 | **`index.html`** | SEO title/description, favicon 연결 | 중간 |
+| 9 | **`index.html`** | SEO 메타태그, OG/Twitter Card, favicon, 네이버 인증 | 중간 |
+| 11 | **`public/robots.txt`** | 검색엔진 크롤링 허용, 사이트맵 경로 안내 | 낮음 |
+| 12 | **`public/sitemap.xml`** | 검색엔진 제출용 URL 목록 | 낮음 |
 | 10 | **`src/index.css`** | 전역 색상, 폰트, 기본 스타일 | 중간 |
 
 ---
@@ -780,7 +831,9 @@ SNS 공유 이미지를 명확히 지정하려면 다음 항목을 추가하는 
 | 설비/제품 카드 추가 | 중간 | 배열 항목 추가 및 이미지 import 필요 |
 | 메뉴/섹션 추가 | 중간 | data, section, Home, navLinks 연결 필요 |
 | 전체 디자인 변경 | 높음 | Tailwind class와 반응형 검토 필요 |
-| SEO/OG 확장 | 중간 | `index.html`, public 이미지 추가 필요 |
+| SEO 메타 수정 | 낮음~중간 | `index.html`의 title/description/OG 태그 수정 |
+| OG 공유 이미지 추가 | 중간 | `public/og-image.jpg` 추가 후 `index.html`에 `og:image` 연결 |
+| sitemap 갱신 | 낮음 | `public/sitemap.xml`의 `lastmod` 또는 URL 항목 수정 |
 | 배포 문제 해결 | 중간 | Vercel 로그와 로컬 build 재현 필요 |
 
 ---
@@ -799,6 +852,9 @@ SNS 공유 이미지를 명확히 지정하려면 다음 항목을 추가하는 
 | [ ] | 설비/제품/협력업체 이미지가 정상 표시 |
 | [ ] | 지도 iframe과 네이버 지도 링크가 정상 동작 |
 | [ ] | favicon이 브라우저 탭에 정상 표시 |
+| [ ] | `https://creta.한국/robots.txt` 접속 확인 |
+| [ ] | `https://creta.한국/sitemap.xml` 접속 확인 |
+| [ ] | 네이버 서치어드바이저에 sitemap 제출 상태 확인 |
 | [ ] | Vercel Deployments에서 배포 성공 확인 |
 | [ ] | 실제 운영 도메인에서 최신 내용 반영 확인 |
 
@@ -821,7 +877,10 @@ SNS 공유 이미지를 명확히 지정하려면 다음 항목을 추가하는 
 | `public/favicon.svg` 위치 | 반영 완료 |
 | `public/images/` 현재 직접 미사용 상태 | 반영 완료 |
 | SEO 메타 위치 | `index.html` 기준 반영 |
-| Open Graph 미설정 상태 | 반영 완료 |
+| `public/robots.txt` | 반영 완료 |
+| `public/sitemap.xml` | 반영 완료 |
+| Open Graph / Twitter Card | `index.html` 기준 반영 완료 (`og:image` 제외) |
+| 네이버 사이트 인증 메타태그 | `index.html` 유지 중 |
 | Global CSS 위치 | `src/index.css` 기준 반영 |
 | Tailwind config 파일 없음 | 반영 완료 |
 | 환경변수 없음 | 반영 완료 |
