@@ -218,6 +218,7 @@ text 파일 수정 → npm run dev 로 확인 → git push → Vercel 자동 배
 | 문의 안내 문구 | **`src/data/contact.js`** |
 | 주소, 네이버 지도 링크, 지도 embed | **`src/data/location.js`** |
 | SEO 메타태그, favicon | **`index.html`**, `public/favicon.svg` |
+| SNS 공유 이미지 (OG/Twitter) | **`public/og-image.jpg`**, `index.html`의 `og:image` / `twitter:image` |
 | 검색엔진 크롤링 안내 | **`public/robots.txt`** |
 | 사이트맵(검색엔진 제출용) | **`public/sitemap.xml`** |
 | 전체 색상, 전역 폰트, 기본 CSS | **`src/index.css`** |
@@ -312,6 +313,7 @@ npm run build
 ├── eslint.config.js
 ├── public/
 │   ├── favicon.svg
+│   ├── og-image.jpg
 │   ├── robots.txt
 │   ├── sitemap.xml
 │   ├── icons.svg
@@ -528,16 +530,17 @@ npm run build
 
 ## 9. SEO, robots.txt, sitemap, Open Graph
 
-검색엔진 최적화(SEO) 관련 파일은 아래 3곳에서 관리합니다.
+검색엔진 최적화(SEO) 및 SNS 공유 관련 파일은 아래에서 관리합니다.
 
 | 파일 | 역할 | 배포 후 접근 주소 |
 |---|---|---|
 | `index.html` | 페이지 메타태그, 네이버 인증, OG/Twitter Card | `https://creta.한국/` |
 | `public/robots.txt` | 검색엔진 크롤링 허용 및 사이트맵 안내 | `https://creta.한국/robots.txt` |
 | `public/sitemap.xml` | 검색엔진에 제출할 URL 목록 | `https://creta.한국/sitemap.xml` |
+| `public/og-image.jpg` | 카카오톡·네이버·SNS 공유 미리보기 이미지 | `https://creta.한국/og-image.jpg` |
 
 Vite는 `public/` 폴더 파일을 빌드 시 `dist/` 루트로 그대로 복사합니다.  
-별도 `vercel.json` 설정 없이도 배포 후 위 두 주소로 정상 접근됩니다.
+별도 `vercel.json` 설정 없이도 배포 후 위 주소로 정상 접근됩니다.
 
 ### `index.html` SEO 메타태그 (현재 설정)
 
@@ -561,10 +564,30 @@ Vite는 `public/` 폴더 파일을 빌드 시 `dist/` 루트로 그대로 복사
 |---|---|
 | `og:type`, `og:locale`, `og:site_name` | 설정 완료 |
 | `og:title`, `og:description`, `og:url` | 설정 완료 |
-| `twitter:card`, `twitter:title`, `twitter:description` | 설정 완료 |
-| `og:image` | 미설정 (추후 `public/og-image.jpg` 추가 가능) |
+| `og:image` | 설정 완료 (`https://creta.한국/og-image.jpg`) |
+| `twitter:card` | `summary_large_image` |
+| `twitter:title`, `twitter:description`, `twitter:image` | 설정 완료 |
 
-SNS 공유 미리보기 이미지를 개선하려면 `public/og-image.jpg` 등을 추가한 뒤 `index.html`에 `og:image`, `twitter:image`를 연결하세요.
+### `public/og-image.jpg` (SNS 공유 이미지)
+
+카카오톡, 네이버, SNS 링크 공유 시 표시되는 대표 이미지입니다.
+
+| 항목 | 내용 |
+|---|---|
+| 원본 이미지 | `src/assets/hero/edm-hero.jpg` (메인 히어로 — 방전 가공 설비) |
+| 공유용 파일 | `public/og-image.jpg` |
+| 배포 후 URL | `https://creta.한국/og-image.jpg` |
+| 해상도 | 900 × 1200 (원본 비율 유지, 최대 1200px 기준 압축) |
+| 용량 | 약 311KB (원본 499KB에서 압축) |
+
+`index.html` 연결 메타태그:
+
+```html
+<meta property="og:image" content="https://creta.한국/og-image.jpg" />
+<meta name="twitter:image" content="https://creta.한국/og-image.jpg" />
+```
+
+히어로 대표 이미지를 교체할 때는 `src/assets/hero/edm-hero.jpg`를 수정한 뒤, 동일 이미지를 `public/og-image.jpg`로 다시 복사·압축하고 `index.html`의 `og:image`, `twitter:image` URL이 맞는지 확인하세요.
 
 ### `public/robots.txt`
 
@@ -602,7 +625,8 @@ Sitemap: https://creta.한국/sitemap.xml
 | 항목 | 주의 내용 |
 |---|---|
 | 네이버 인증 메타태그 | 배포 후 삭제하면 서치어드바이저 소유 확인이 해제될 수 있음 |
-| canonical / og:url | 도메인 변경 시 `index.html`과 `sitemap.xml`을 함께 수정 |
+| canonical / og:url / og:image / twitter:image | 도메인 변경 시 `index.html`과 `sitemap.xml`, `public/og-image.jpg` URL을 함께 수정 |
+| og-image 갱신 | 히어로 이미지 변경 시 `public/og-image.jpg`도 함께 교체 |
 | sitemap lastmod | 콘텐츠 대폭 수정 후 날짜 갱신 권장 |
 | robots.txt | 전체 차단(`Disallow: /`) 설정 금지 |
 
@@ -802,7 +826,7 @@ Sitemap: https://creta.한국/sitemap.xml
 
 ---
 
-## 16. 자주 수정하는 파일 TOP 10
+## 16. 자주 수정하는 파일 TOP 13
 
 | 순위 | 파일 | 수정 내용 | 난이도 |
 |---:|---|---|---|
@@ -815,9 +839,10 @@ Sitemap: https://creta.한국/sitemap.xml
 | 7 | **`src/data/history.js`** | 회사 연혁 | 낮음 |
 | 8 | **`src/data/hero.js`** | 메인 문구, 히어로 이미지 | 낮음 |
 | 9 | **`index.html`** | SEO 메타태그, OG/Twitter Card, favicon, 네이버 인증 | 중간 |
+| 10 | **`src/index.css`** | 전역 색상, 폰트, 기본 스타일 | 중간 |
 | 11 | **`public/robots.txt`** | 검색엔진 크롤링 허용, 사이트맵 경로 안내 | 낮음 |
 | 12 | **`public/sitemap.xml`** | 검색엔진 제출용 URL 목록 | 낮음 |
-| 10 | **`src/index.css`** | 전역 색상, 폰트, 기본 스타일 | 중간 |
+| 13 | **`public/og-image.jpg`** | SNS 공유 미리보기 이미지 (히어로 대표 사진 기반) | 낮음 |
 
 ---
 
@@ -832,7 +857,7 @@ Sitemap: https://creta.한국/sitemap.xml
 | 메뉴/섹션 추가 | 중간 | data, section, Home, navLinks 연결 필요 |
 | 전체 디자인 변경 | 높음 | Tailwind class와 반응형 검토 필요 |
 | SEO 메타 수정 | 낮음~중간 | `index.html`의 title/description/OG 태그 수정 |
-| OG 공유 이미지 추가 | 중간 | `public/og-image.jpg` 추가 후 `index.html`에 `og:image` 연결 |
+| OG 공유 이미지 교체 | 낮음 | `src/assets/hero/edm-hero.jpg` 기준으로 `public/og-image.jpg` 재생성 |
 | sitemap 갱신 | 낮음 | `public/sitemap.xml`의 `lastmod` 또는 URL 항목 수정 |
 | 배포 문제 해결 | 중간 | Vercel 로그와 로컬 build 재현 필요 |
 
@@ -854,6 +879,8 @@ Sitemap: https://creta.한국/sitemap.xml
 | [ ] | favicon이 브라우저 탭에 정상 표시 |
 | [ ] | `https://creta.한국/robots.txt` 접속 확인 |
 | [ ] | `https://creta.한국/sitemap.xml` 접속 확인 |
+| [ ] | `https://creta.한국/og-image.jpg` 접속 확인 |
+| [ ] | 카카오톡/네이버/SNS 링크 공유 시 미리보기 이미지 정상 표시 |
 | [ ] | 네이버 서치어드바이저에 sitemap 제출 상태 확인 |
 | [ ] | Vercel Deployments에서 배포 성공 확인 |
 | [ ] | 실제 운영 도메인에서 최신 내용 반영 확인 |
@@ -879,7 +906,8 @@ Sitemap: https://creta.한국/sitemap.xml
 | SEO 메타 위치 | `index.html` 기준 반영 |
 | `public/robots.txt` | 반영 완료 |
 | `public/sitemap.xml` | 반영 완료 |
-| Open Graph / Twitter Card | `index.html` 기준 반영 완료 (`og:image` 제외) |
+| `public/og-image.jpg` | 반영 완료 (`src/assets/hero/edm-hero.jpg` 기반) |
+| Open Graph / Twitter Card | `index.html` 기준 반영 완료 (`og:image`, `twitter:image` 포함) |
 | 네이버 사이트 인증 메타태그 | `index.html` 유지 중 |
 | Global CSS 위치 | `src/index.css` 기준 반영 |
 | Tailwind config 파일 없음 | 반영 완료 |
