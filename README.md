@@ -915,3 +915,18 @@ Sitemap: https://creta.한국/sitemap.xml
 | Vercel 설정 파일 없음 | 반영 완료 |
 | 배포 산출물 `dist/` | 반영 완료 |
 
+---
+
+## 20. 변경 이력 (Version History)
+
+### v1.0.0 (2026-07-03)
+
+- 회사 홈페이지 제작 완료
+- GitHub 마이그레이션
+- Vercel 배포
+- 가비아 도메인 연결
+- 검색엔진 최적화(SEO) 설정
+- robots.txt 추가
+- sitemap.xml 추가
+- 네이버 서치어드바이저 등록 완료
+
